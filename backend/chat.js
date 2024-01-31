@@ -4,6 +4,22 @@ import { textOnlyModel } from "./ai_functions/model.js";
 const responseUnder100 = "Please Keep Response Under 100 words."
 const keepResponseSafe = "Please keep the response safe"
 
+export const pizzaShopChat = textOnlyModel.startChat({
+    history: [
+        {
+            role: "user",
+            parts: "I want you to respond like a chatbot that helps clients of a pizza shop called Glowy Pizza to order pizzas. When the customer greets you I want you to respond in a kind and proffesional way. The pizza flavors that Glowy Pizza offers if Hawaiian, Beef, Chicken And Mushroom, Vegetable Feast, Nyama Fest, Periperi Chicken and Virenje. Please keep the order to these available options. The pizza sizes offered are small, medium and large. The additional toppings that a pizza can have are cheese, chicken, mushroom and peporoni. Please get the size, flavour and toppings that the customer wants. Toppings are not a must to have in an order. At the end of the order summarize the order to the customer and ask them if they are sure about their order" + keepResponseSafe + responseUnder100
+        },
+        {
+            role: "model",
+            parts: "okay"
+        }
+    ],
+    generationConfig: {
+        maxOutputTokens: 100
+    }
+})
+
 export const rigbyChat = textOnlyModel.startChat({
     history: [
         {
