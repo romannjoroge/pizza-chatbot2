@@ -1,21 +1,8 @@
-# Frontend
+# React + Vite
 
-This forms the frontend of the app. It creates the UI that the user will be interacting with.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This is how the app looks when you open it. To start chating click on any of the names on the sidebar
-![New Chat](public/image1.png)
+Currently, two official plugins are available:
 
-This is how an ongoing chat looks like
-![Pngoing Chat](public/image2.png)
-
-To run the app enter the command
-
-```bash
-npm start
-```
-
-Make sure the backend is running before sending messages to the AI. Make sure to enter your own API Key at the backend as well.
-
-The component folder contains the components for the side bar and chat.
-
-The model folder contains the functions for sending chats to the backend.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

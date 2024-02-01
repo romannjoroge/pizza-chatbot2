@@ -1,4 +1,4 @@
-import { serverUrl } from "../constants"
+import { serverUrl } from "./constants"
 import axios from "axios";
 
 // Send a chat to the server and return the response
