@@ -24,14 +24,27 @@ export default async function confirmDetailsFromGemini(chat) {
         }
         When talking to the customer do not reference chats from me to the customer. Return only the JSON and nothing else
         `;
-
+        console.log("RESPONSE #####################")
         const response = await chatWithAI(chat, prompt);
+        console.log(response);
 
-        const beginRegex = /^.*{/;
-        const endRegex = /&}.*/
-        let cleanedResponse = response.replace(beginRegex, "{");
-        cleanedResponse = response.replace(endRegex, "}")
+        // const beginRegex = /^.*{/;
+        // const endRegex = /&}.*/
+        // let cleanedResponse = response.replace(beginRegex, "{");
+        // cleanedResponse = response.replace(endRegex, "}")
 
+        const jsonRegex = /{[^]*}/;
+        const jsonMatch = response.match(jsonRegex);
+        let cleanedResponse = "";
+
+        if (jsonMatch && jsonMatch.length > 0) {
+            // Parse the extracted JSON string
+            cleanedResponse = jsonMatch[0];
+        } else {
+            cleanedResponse = "";
+        }
+
+        console.log("CLEANED RESPONSE ###############################")
         console.log(cleanedResponse);
 
         const json = JSON.parse(cleanedResponse);
