@@ -19,22 +19,35 @@ app.get("/test", (req, res) => {
 })
 
 // Creating route for getting someones response
-app.post("/chat/:character", async (req, res) => {
+// app.post("/chat/:character", async (req, res) => {
+//     const prompt = req.body.prompt;
+//     const character = req.params.character;
+
+//     // Check if the provided character exists
+//     if (!parkMembers.includes(character)) {
+//         return res.status(404).json({error: "Character Does Not Exist"});
+//     }
+
+
+//     // Use a different chat based on the characther
+//     try {
+//         const response = await chatWithAI(chats[character], prompt);
+//         return res.json({response});
+//     } catch(err) {
+//         return res.status(500).json({error: "Internal Server Error"})
+//     }
+// })
+
+// Send users input to this endpoint
+app.post('/chat', async (req, res) => {
     const prompt = req.body.prompt;
-    const character = req.params.character;
 
-    // Check if the provided character exists
-    if (!parkMembers.includes(character)) {
-        return res.status(404).json({error: "Character Does Not Exist"});
-    }
-
-
-    // Use a different chat based on the characther
     try {
-        const response = await chatWithAI(chats[character], prompt);
+        const response = await chatWithAI(chats.pizzaShopChat, prompt);
         return res.json({response});
     } catch(err) {
-        return res.status(500).json({error: "Internal Server Error"})
+        console.log(err);
+        res.status(500).json({error: "Something Went Wrong"});
     }
 })
 
