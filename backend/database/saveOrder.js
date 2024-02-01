@@ -10,8 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default async function saveRecordsInDatabase(pizzasize, pizzaflavour, pizzatopping, address) {
     try {
         const {data, error} = await supabase.rpc("saveorder", {pizzasize, pizzaflavour, pizzatopping, address});
-        // const {data, error} = await supabase.rpc("saveOrder", [pizzaSize, pizzaFlavour, pizzaToppings, address]);
-
+        
         if (error) {
             console.log(error);
             throw "Error!"
