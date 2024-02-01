@@ -1,3 +1,4 @@
+import saveRecordsInDatabase from "../database/saveOrder.js";
 import { chatWithAI } from "./prompt_gemini.js";
 
 /*
@@ -38,7 +39,12 @@ export default async function confirmDetailsFromGemini(chat) {
 
         // If the order is confirmed save to database
         if (json["confirmed"] === true) {
-            console.log("Save To Database!")
+            const size = json["size"] ?? "small";
+            const topping = json['topping'] ?? "peperoni";
+            const flavor = json['flavour'] ?? "Nyama Feast";
+            const address = json['address'] ?? "Nairobi";
+
+            await saveRecordsInDatabase(size, flavor, topping, address);
         }
 
         console.log(response);
