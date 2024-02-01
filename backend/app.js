@@ -2,8 +2,10 @@ import Express from "express";
 const app = Express();
 import { chatWithAI } from "./ai_functions/prompt_gemini.js";
 import { chats, parkMembers } from "./constants.js";
-import { groupChat } from "./chat.js";
+import { groupChat, pizzaShopChat } from "./chat.js";
 import cors from 'cors';
+import confirmDetailsFromGemini from "./ai_functions/getDataFromChat.js";
+import saveRecordsInDatabase from "./database/saveOrder.js";
 
 // Add middleware for parsing request body
 app.use(Express.urlencoded({ extended: false }))
@@ -41,9 +43,10 @@ app.get("/test", (req, res) => {
 // Send users input to this endpoint
 app.post('/chat', async (req, res) => {
     const prompt = req.body.prompt;
-
+    
     try {
         const response = await chatWithAI(chats.pizzaShopChat, prompt);
+        const data = await confirmDetailsFromGemini(chats.pizzaShopChat);
         return res.json({response});
     } catch(err) {
         console.log(err);
