@@ -41,7 +41,7 @@ export default async function confirmDetailsFromGemini(chat) {
             // Parse the extracted JSON string
             cleanedResponse = jsonMatch[0];
         } else {
-            cleanedResponse = "{'confirmed': false}";
+            cleanedResponse = "";
         }
 
         console.log("CLEANED RESPONSE ###############################")
